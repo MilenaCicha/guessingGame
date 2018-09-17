@@ -2,8 +2,16 @@
 #include <cmath>
 #include <ctime>
 
-
-
+int guess;
+int userPrompt(){
+    while (!(std::cin >> guess))
+    {
+        std::cin.clear();
+        std::cin.ignore(100,'\n');
+        std::cout << "Podaj liczbe\n";
+    }
+return guess;
+}
 
 
 int main(){
@@ -11,15 +19,9 @@ int main(){
     int randomNumber = rand() % 100 + 1;
     std::cout << "Wylosowano liczbe z przedzialu 1-100." << std::endl;
 
-    int guess;
-    std::cout << "Masz 10 szans na odgadniecie liczby.\n";
-    while (!(std::cin >> guess))
-    {
-        std::cin.clear();
-        std::cin.ignore(100,'\n');
-        std::cout << "Podaj liczbe\n";
-    }
 
+    std::cout << "Masz 10 szans na odgadniecie liczby.\n";
+    userPrompt();
     int tries = 1;
 
     while (guess != randomNumber && tries <10) {
@@ -29,12 +31,7 @@ int main(){
         std::cout << "Liczba jest za duza.";
 
     std::cout <<" To byla "<<tries<<" proba. Sprobuj jeszcze raz.\n";
-        while (!(std::cin >> guess))
-        {
-            std::cin.clear();
-            std::cin.ignore(100,'\n');
-            std::cout << "Podaj liczbe\n";
-        }
+    userPrompt();
     tries +=1;
 
 
